@@ -1,0 +1,330 @@
+/* ============================================================
+   Container fixes — let smoke escape above the card silhouette
+   while keeping inner images neatly clipped
+   ============================================================ */
+.catalog-card,
+.historia-card,
+.envios-card,
+.polaroid,
+.faq-item {
+  overflow: visible !important;
+}
+/* Inner figure keeps the rounded image clipping */
+.catalog-card .catalog-card-figure {
+  overflow: hidden;
+  border-top-left-radius: calc(var(--radius-card) - 3px);
+  border-top-right-radius: calc(var(--radius-card) - 3px);
+}
+.polaroid .polaroid-photo {
+  overflow: hidden;
+}
+
+/* ============================================================
+   SMOKE-ON-HOVER
+   We don't override existing ::before/::after (catalog-card dashed
+   gold border, historia-card border, polaroid tape strip).
+   Instead we use multi-layer box-shadow for the warm glow effect
+   plus filter: drop-shadow for the actual rising plume.
+   ============================================================ */
+
+/* ---- CARDS (cards already have ::before/::after — use box-shadow + glow) ---- */
+.catalog-card,
+.historia-card,
+.envios-card,
+.polaroid,
+.faq-item,
+.medida-aside figure {
+  transition:
+    transform .35s cubic-bezier(.34,1.56,.64,1),
+    box-shadow .45s ease-out,
+    filter .4s ease-out;
+}
+
+/* The warm "ember glow" snapping in under the card */
+.catalog-card:hover,
+.catalog-card:focus-within,
+.historia-card:hover,
+.envios-card:hover,
+.envios-card:focus-within,
+.medida-aside figure:hover {
+  box-shadow:
+    var(--shadow-2),
+    0 30px 50px -10px rgba(255, 160, 100, 0.45),
+    0 60px 90px -20px rgba(255, 200, 140, 0.28),
+    0 0 0 1px rgba(212, 160, 54, 0.15);
+  animation: cardEmberGlow 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes cardEmberGlow {
+  from {
+    box-shadow:
+      var(--shadow-2),
+      0 25px 40px -10px rgba(255, 150, 80,  0.40),
+      0 50px 80px -20px rgba(255, 180, 110, 0.22),
+      0 0 0 1px rgba(212, 160, 54, 0.10);
+    filter: brightness(1.0);
+  }
+  to {
+    box-shadow:
+      var(--shadow-2),
+      0 35px 65px -10px rgba(255, 180, 130, 0.55),
+      0 70px 110px -20px rgba(255, 220, 160, 0.35),
+      0 0 0 1px rgba(212, 160, 54, 0.20);
+    filter: brightness(1.04);
+  }
+}
+
+/* Polaroid uses rotate transform — keep that and just stack glow */
+.polaroid:hover {
+  box-shadow:
+    0 4px 0 rgba(0,0,0,.05),
+    0 20px 50px rgba(0,0,0,.45),
+    0 0 0 1px rgba(0,0,0,.05),
+    0 30px 60px -10px rgba(255, 160, 100, 0.5),
+    0 50px 90px -20px rgba(255, 200, 140, 0.3);
+  animation: cardEmberGlow 2.6s ease-in-out infinite alternate;
+}
+
+/* FAQ open state — gentle glow even without hover */
+.faq-item[open],
+.faq-item:hover {
+  box-shadow:
+    var(--shadow-1),
+    0 15px 30px -8px rgba(255, 160, 100, 0.35);
+}
+
+/* ============================================================
+   RISING SMOKE PLUME — a separate floating layer per group
+   We attach it via the parent SECTION's ::before so it doesn't
+   touch the card's own pseudos.
+   ============================================================ */
+
+/* Smoke layer container — one per card */
+.smoke-plume {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 80%;
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .35s ease-out;
+  mix-blend-mode: screen;
+}
+.smoke-plume::before,
+.smoke-plume::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -20%;
+  width: 90%;
+  height: 140%;
+  transform: translateX(-50%) translateY(0) scale(0.85);
+  border-radius: 50%;
+  filter: blur(18px);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 90%,
+      rgba(255, 200, 140, 0.55) 0%,
+      rgba(255, 160, 100, 0.32) 30%,
+      rgba(180, 110, 70, 0.15) 60%,
+      transparent 100%);
+}
+.smoke-plume::after {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 90%,
+      rgba(220, 200, 220, 0.45) 0%,
+      rgba(180, 170, 200, 0.22) 40%,
+      transparent 75%);
+  animation-delay: .6s !important;
+}
+
+/* When the parent card is hovered, reveal smoke and animate */
+.catalog-card:hover .smoke-plume,
+.catalog-card:focus-within .smoke-plume,
+.historia-card:hover .smoke-plume,
+.envios-card:hover .smoke-plume,
+.envios-card:focus-within .smoke-plume,
+.polaroid:hover .smoke-plume,
+.medida-aside figure:hover .smoke-plume,
+.faq-item:hover .smoke-plume,
+.faq-item[open] .smoke-plume {
+  opacity: 1;
+}
+.catalog-card:hover .smoke-plume::before,
+.catalog-card:focus-within .smoke-plume::before,
+.historia-card:hover .smoke-plume::before,
+.envios-card:hover .smoke-plume::before,
+.envios-card:focus-within .smoke-plume::before,
+.polaroid:hover .smoke-plume::before,
+.medida-aside figure:hover .smoke-plume::before,
+.faq-item:hover .smoke-plume::before,
+.faq-item[open] .smoke-plume::before {
+  animation: plumeRise 2.6s ease-in-out infinite;
+}
+.catalog-card:hover .smoke-plume::after,
+.catalog-card:focus-within .smoke-plume::after,
+.historia-card:hover .smoke-plume::after,
+.envios-card:hover .smoke-plume::after,
+.envios-card:focus-within .smoke-plume::after,
+.polaroid:hover .smoke-plume::after,
+.medida-aside figure:hover .smoke-plume::after,
+.faq-item:hover .smoke-plume::after,
+.faq-item[open] .smoke-plume::after {
+  animation: plumeDrift 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes plumeRise {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20%) scale(0.85) skewX(-2deg);
+  }
+  20% {
+    opacity: 0.95;
+    transform: translateX(-50%) translateY(5%) scale(1) skewX(3deg);
+  }
+  60% {
+    opacity: 0.75;
+    transform: translateX(-50%) translateY(-25%) scale(1.2) skewX(-2deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-55%) scale(1.55) skewX(2deg);
+  }
+}
+
+@keyframes plumeDrift {
+  0% {
+    opacity: 0.4;
+    transform: translateX(-50%) translateY(10%) translateX(-12px) scale(0.95);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translateX(-50%) translateY(-35%) translateX(8px) scale(1.3);
+  }
+}
+
+/* ============================================================
+   BUTTONS — smoke under hot CTAs (these don't have pseudo conflicts)
+   ============================================================ */
+
+.btn-bordo,
+.btn-oro {
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+}
+.btn-bordo::after,
+.btn-oro::after {
+  content: "";
+  position: absolute;
+  left: -15%;
+  right: -15%;
+  bottom: -25%;
+  height: 90%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 80%,
+      rgba(255, 180, 120, 0.55) 0%,
+      rgba(255, 140, 80, 0.25) 40%,
+      transparent 75%);
+  filter: blur(11px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity .35s;
+  transform: translateY(20%) scale(0.9);
+}
+.btn-bordo:hover::after,
+.btn-oro:hover::after,
+.btn-bordo:focus-visible::after,
+.btn-oro:focus-visible::after {
+  opacity: 1;
+  animation: btnSmoke 1.8s ease-in-out infinite;
+}
+@keyframes btnSmoke {
+  0%   { opacity: 0.3; transform: translateY(25%) scale(0.85); }
+  50%  { opacity: 0.95; transform: translateY(-8%) scale(1.15); }
+  100% { opacity: 0;   transform: translateY(-40%) scale(1.4); }
+}
+
+/* ============================================================
+   FILTER CHIPS — tiny puff
+   ============================================================ */
+.catalog-filter {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+.catalog-filter::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 70%;
+  height: 90%;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(20%) scale(0.6);
+  background: radial-gradient(ellipse, rgba(255,180,120,0.45) 0%, transparent 70%);
+  filter: blur(9px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity .3s;
+}
+.catalog-filter:hover::after,
+.catalog-filter.is-active::after {
+  opacity: 1;
+  animation: chipPuff 1.8s ease-in-out infinite;
+}
+@keyframes chipPuff {
+  0%, 100% {
+    transform: translateX(-50%) translateY(30%) scale(0.7);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10%) scale(1);
+    opacity: 0.9;
+  }
+}
+
+/* ============================================================
+   Perf + a11y
+   ============================================================ */
+html.perf-low .smoke-plume,
+html.perf-low .btn-bordo::after,
+html.perf-low .btn-oro::after,
+html.perf-low .catalog-filter::after {
+  display: none !important;
+}
+html.perf-low .catalog-card:hover,
+html.perf-low .historia-card:hover,
+html.perf-low .envios-card:hover,
+html.perf-low .polaroid:hover,
+html.perf-low .medida-aside figure:hover {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smoke-plume,
+  .btn-bordo::after, .btn-oro::after,
+  .catalog-filter::after {
+    animation: none !important;
+    transition: opacity .2s ease !important;
+  }
+  .catalog-card:hover,
+  .historia-card:hover,
+  .envios-card:hover,
+  .polaroid:hover,
+  .medida-aside figure:hover {
+    animation: none !important;
+  }
+}
+
+html.save-data .smoke-plume,
+html.save-data .btn-bordo::after,
+html.save-data .btn-oro::after,
+html.save-data .catalog-filter::after {
+  display: none !important;
+}

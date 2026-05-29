@@ -53,6 +53,7 @@ function renderGrid() {
   const products = productsByFamily(activeFamily);
   grid.innerHTML = products.map(p => `
     <article class="catalog-card reveal" data-id="${p.id}">
+      <div class="smoke-plume" aria-hidden="true"></div>
       <div class="catalog-card-figure">
         ${pictureFor(p.image, p.name)}
       </div>
