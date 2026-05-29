@@ -1,0 +1,65 @@
+/* ============================================================
+   FLOATING WHATSAPP BUTTON (mobile)
+   ============================================================ */
+
+.wa-fab {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  right: 16px;
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .9em 1.15em;
+  border-radius: var(--radius-pill);
+  background: #25D366;
+  color: #ffffff;
+  font-family: var(--font-slab);
+  font-size: .9rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow:
+    0 8px 18px rgba(37,211,102,.35),
+    0 2px 4px rgba(0,0,0,.18);
+  transform: translateY(80px) scale(.9);
+  opacity: 0;
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1), opacity .35s, box-shadow .25s;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.wa-fab.is-mounted {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.wa-fab.is-hidden {
+  transform: translateY(80px) scale(.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.wa-fab:active {
+  transform: scale(.95);
+  box-shadow: 0 4px 10px rgba(37,211,102,.4);
+}
+.wa-fab svg { flex-shrink: 0; }
+.wa-fab-label {
+  /* Hide label on tiny screens to save space, keep icon */
+  display: inline;
+}
+@media (max-width: 360px) {
+  .wa-fab-label { display: none; }
+  .wa-fab { padding: .85em; }
+}
+
+/* Idle pulse to attract attention — subtle on mid/high, off on low */
+@keyframes faBreath {
+  0%, 100% { box-shadow: 0 8px 18px rgba(37,211,102,.35), 0 2px 4px rgba(0,0,0,.18), 0 0 0 0 rgba(37,211,102,.5); }
+  50%      { box-shadow: 0 8px 18px rgba(37,211,102,.45), 0 2px 4px rgba(0,0,0,.18), 0 0 0 14px rgba(37,211,102,0); }
+}
+.wa-fab.is-mounted {
+  animation: faBreath 3.5s ease-in-out 2s infinite;
+}
+html.perf-low .wa-fab { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .wa-fab { animation: none !important; transition: opacity .2s !important; }
+}

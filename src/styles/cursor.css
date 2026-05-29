@@ -1,0 +1,85 @@
+/* ============================================================
+   CUSTOM PALA ASADOR (SPATULA) CURSOR
+   ============================================================ */
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-spatula-cursor,
+  html.has-spatula-cursor body,
+  html.has-spatula-cursor * {
+    cursor: none !important;
+  }
+}
+
+#spatula-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 56px; height: 56px;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity .25s, width .25s cubic-bezier(.34,1.56,.64,1), height .25s cubic-bezier(.34,1.56,.64,1);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,.35));
+}
+#spatula-cursor.is-active { opacity: 1; }
+#spatula-cursor svg {
+  width: 100%;
+  height: 100%;
+  /* anchor the blade tip near (10,42) — translate so that point sits at cursor 0,0 */
+  transform: translate(-18%, -8%);
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* Idle sway */
+#spatula-cursor.is-active svg {
+  animation: spatulaSway 3.5s ease-in-out infinite alternate;
+}
+@keyframes spatulaSway {
+  0%   { transform: translate(-18%, -8%) rotate(-1.5deg); }
+  100% { transform: translate(-18%, -8%) rotate(1.5deg); }
+}
+
+/* Hover state — slightly bigger, ember glows */
+#spatula-cursor.is-hover {
+  width: 72px; height: 72px;
+}
+.spatula-ember {
+  opacity: 0;
+  transition: opacity .3s;
+  transform-origin: 10px 42px;
+}
+#spatula-cursor.is-hover .spatula-ember {
+  opacity: 1;
+  animation: emberFlicker 1.1s ease-in-out infinite alternate;
+}
+@keyframes emberFlicker {
+  0%   { opacity: .7; transform: scale(.9); }
+  100% { opacity: 1;  transform: scale(1.15); }
+}
+
+/* Click state — quick "swat" rotation */
+#spatula-cursor.is-click svg {
+  animation: spatulaSwat .4s cubic-bezier(.5,-0.4,.5,1.4) !important;
+}
+@keyframes spatulaSwat {
+  0%   { transform: translate(-18%, -8%) rotate(0deg); }
+  35%  { transform: translate(-18%, -8%) rotate(-32deg) translateY(-2px); }
+  65%  { transform: translate(-25%, 5%)  rotate(20deg)  translateY(4px); }
+  100% { transform: translate(-18%, -8%) rotate(0deg); }
+}
+
+/* Smoke canvas — sits under the cursor */
+#smoke-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9997;
+  mix-blend-mode: normal;
+  opacity: .85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #spatula-cursor.is-active svg { animation: none; }
+  #smoke-canvas { display: none; }
+}

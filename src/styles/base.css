@@ -1,0 +1,85 @@
+/* ============================================================
+   ASADORES DE NORBERTO · base
+   Palette + reset + variables
+   ============================================================ */
+
+:root {
+  /* Filete porteño classic palette */
+  --bordo:        #8b0e0e;
+  --bordo-dark:   #5a0606;
+  --bordo-bright: #c41818;
+  --ultramar:     #1e3a8a;
+  --verde:        #0f5132;
+  --oro:          #d4a036;
+  --oro-light:    #fde58a;
+  --oro-dark:     #8b6914;
+  --ambar:        #f4b41a;
+  --crema:        #fff5d7;
+  --crema-warm:   #f7e9bf;
+  --hueso:        #faf4e3;
+  --carbon:       #1a0f0a;
+  --carbon-deep:  #0c0604;
+  --humo:         #2d1810;
+  --ascua:        #ff5722;
+  --ascua-bright: #ff9243;
+
+  /* Type */
+  --font-slab:    "Alfa Slab One", "Bagel Fat One", Georgia, serif;
+  --font-fat:     "Bagel Fat One", "Alfa Slab One", serif;
+  --font-script:  "Pacifico", "Sacramento", cursive;
+  --font-hand:    "Sacramento", "Pacifico", cursive;
+  --font-body:    "Source Serif 4", Georgia, serif;
+  --font-mono:    "Inconsolata", "Courier New", monospace;
+
+  /* Layout */
+  --container:   min(1280px, 92vw);
+  --container-narrow: min(960px, 90vw);
+  --radius-card: 14px;
+  --radius-pill: 999px;
+
+  /* Shadow */
+  --shadow-1: 0 2px 8px rgba(0,0,0,.18);
+  --shadow-2: 0 12px 30px rgba(0,0,0,.25);
+  --shadow-ember: 0 0 20px rgba(255,87,34,.5), 0 0 40px rgba(255,87,34,.2);
+}
+
+* { box-sizing: border-box; }
+*::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: var(--carbon-deep);
+  color: var(--carbon);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+body.is-locked { overflow: hidden; }
+
+img, svg { display: block; max-width: 100%; height: auto; }
+button { font: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+[hidden] { display: none !important; }
+
+::selection { background: var(--ascua); color: var(--crema); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch / no-cursor envs: hide custom cursor */
+@media (hover: none), (pointer: coarse) {
+  #ember-cursor, #spark-canvas { display: none !important; }
+}

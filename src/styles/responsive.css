@@ -1,0 +1,61 @@
+/* ============================================================
+   RESPONSIVE · mobile pass
+   ============================================================ */
+
+/* ---- Intro on mobile: tighter spacing, smaller steak ---- */
+@media (max-width: 640px) {
+  .intro-banner { margin-bottom: .5rem; }
+  .intro-stage { width: 92vw; }
+  .intro-grill { transform: scale(.85); }
+  .intro-skip { top: 12px; right: 12px; font-size: .7rem; padding: .4em .8em; }
+}
+
+@media (max-height: 700px) {
+  .intro-title { margin-bottom: 1rem; }
+  .intro-hint { margin-top: .8rem; }
+}
+
+/* ---- Hero on mobile ---- */
+@media (max-width: 640px) {
+  .hero { padding-top: 4rem; min-height: 100vh; }
+  .hero-pills { gap: .5rem; }
+  .hero-pills li { font-size: .75rem; padding: .4em .8em; }
+  .hero-ctas .btn { padding: .75em 1.2em; font-size: .85rem; }
+}
+
+/* ---- Sections ---- */
+@media (max-width: 640px) {
+  .section { padding: 3.5rem 0; }
+  .section-title { font-size: 2rem; }
+  .historia-quote p { font-size: 1.4rem; }
+}
+
+/* ---- Catalog ---- */
+@media (max-width: 640px) {
+  .catalog-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .catalog-card-figure img { height: 200px; }
+  .catalog-card-actions { flex-direction: column; }
+  .catalog-card-actions .btn { width: 100%; }
+}
+
+/* ---- Cart drawer ---- */
+@media (max-width: 480px) {
+  .cart-drawer { width: 100vw; border-left: none; }
+}
+
+/* ---- Audio toggle on mobile ---- */
+@media (max-width: 480px) {
+  .audio-toggle { bottom: 12px; right: 12px; padding: .55em .85em; }
+  .audio-toggle-label { display: none; }
+}
+
+/* ---- Topbar on small screens ---- */
+@media (max-width: 720px) {
+  .topbar { padding: .5rem 12px; }
+  .topbar-cart { width: 38px; height: 38px; }
+}
+
+/* ---- Fabrica grid mobile ---- */
+@media (max-width: 720px) {
+  .fabrica-info { padding: 1rem; }
+}

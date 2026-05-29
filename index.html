@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1a0f0a" />
+    <title>Asadores de Norberto — Parrillas artesanales · Hecho en La Matanza</title>
+    <meta name="description" content="Parrillas, asadores criollos, discos y fogones hechos a mano por la familia Norberto en Dora Catalina Fleitas 740, Luis Guillón, Buenos Aires. Chapa SAE 1010 1.6mm pintada al epoxi. Envíos a todo el país con Andreani." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Asadores de Norberto — Hecho a mano en Buenos Aires" />
+    <meta property="og:description" content="Tres generaciones haciendo parrillas. Chapa SAE 1010, pintado epoxi, envío con Andreani." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bagel+Fat+One&family=Pacifico&family=Sacramento&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/filete.css" />
+    <link rel="stylesheet" href="./src/styles/intro.css" />
+    <link rel="stylesheet" href="./src/styles/cursor.css" />
+    <link rel="stylesheet" href="./src/styles/sections.css" />
+    <link rel="stylesheet" href="./src/styles/catalog.css" />
+    <link rel="stylesheet" href="./src/styles/cart.css" />
+    <link rel="stylesheet" href="./src/styles/argentina.css" />
+    <link rel="stylesheet" href="./src/styles/album.css" />
+    <link rel="stylesheet" href="./src/styles/fab.css" />
+    <link rel="stylesheet" href="./src/styles/responsive.css" />
+    <link rel="stylesheet" href="./src/styles/perf.css" />
+  </head>
+  <body class="is-locked">
+    <!-- ========== CUSTOM SPATULA CURSOR ========== -->
+    <canvas id="smoke-canvas" aria-hidden="true"></canvas>
+    <div id="spatula-cursor" aria-hidden="true">
+      <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bladeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f4f6f8" />
+            <stop offset="30%" stop-color="#cdd3d8" />
+            <stop offset="70%" stop-color="#9ba3aa" />
+            <stop offset="100%" stop-color="#6c7278" />
+          </linearGradient>
+          <linearGradient id="bladeEdge" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="100%" stop-color="#dde1e5" />
+          </linearGradient>
+          <linearGradient id="neckGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#cfd5da" />
+            <stop offset="50%" stop-color="#f0f3f5" />
+            <stop offset="100%" stop-color="#a8aeb4" />
+          </linearGradient>
+          <linearGradient id="handleGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0c0c0e" />
+            <stop offset="50%" stop-color="#252528" />
+            <stop offset="100%" stop-color="#0a0a0c" />
+          </linearGradient>
+          <radialGradient id="emberTip" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff3d8" />
+            <stop offset="40%" stop-color="#ff9243" />
+            <stop offset="100%" stop-color="rgba(196,24,24,0)" />
+          </radialGradient>
+        </defs>
+
+        <!-- Blade (wide, slotted, kitchen-turner style) -->
+        <g class="spatula-blade">
+          <!-- main blade shape: rounded rectangle with subtle angle -->
+          <path d="M 8 8
+                   Q 8 4 12 4
+                   L 64 4
+                   Q 70 4 70 10
+                   L 70 22
+                   Q 70 28 64 30
+                   L 14 36
+                   Q 8 36 8 30
+                   Z"
+                fill="url(#bladeGrad)" stroke="#3a4046" stroke-width="0.7" stroke-linejoin="round" />
+          <!-- 4 slots cut through the blade -->
+          <rect x="16" y="10" width="3.5" height="20" rx="1.7" fill="#1a1f24" />
+          <rect x="25" y="10" width="3.5" height="20" rx="1.7" fill="#1a1f24" />
+          <rect x="34" y="10" width="3.5" height="20" rx="1.7" fill="#1a1f24" />
+          <rect x="43" y="10" width="3.5" height="20" rx="1.7" fill="#1a1f24" />
+          <rect x="52" y="10" width="3.5" height="20" rx="1.7" fill="#1a1f24" />
+          <!-- front bevel highlight -->
+          <path d="M 9 9 Q 9 5 13 5 L 63 5"
+                fill="none" stroke="url(#bladeEdge)" stroke-width="1.2" stroke-linecap="round" opacity=".95" />
+          <!-- bottom edge shadow -->
+          <path d="M 11 35 L 64 28" fill="none" stroke="rgba(0,0,0,.25)" stroke-width=".8" stroke-linecap="round" />
+        </g>
+
+        <!-- Steel neck connecting blade to handle -->
+        <g class="spatula-neck">
+          <path d="M 32 32 Q 36 38 38 46 L 44 46 Q 46 38 50 32 Z"
+                fill="url(#neckGrad)" stroke="#3a4046" stroke-width="0.6" stroke-linejoin="round" />
+          <!-- neck highlight -->
+          <line x1="40" y1="34" x2="41" y2="44" stroke="#ffffff" stroke-width=".8" opacity=".6" />
+        </g>
+
+        <!-- Black ribbed handle -->
+        <g class="spatula-handle">
+          <rect x="34" y="44" width="14" height="46" rx="6" fill="url(#handleGrad)" stroke="#000" stroke-width="0.5" />
+          <!-- ribbed grip texture (horizontal lines) -->
+          <g stroke="rgba(255,255,255,.07)" stroke-width=".7">
+            <line x1="36" y1="52" x2="46" y2="52" />
+            <line x1="36" y1="56" x2="46" y2="56" />
+            <line x1="36" y1="60" x2="46" y2="60" />
+            <line x1="36" y1="64" x2="46" y2="64" />
+            <line x1="36" y1="68" x2="46" y2="68" />
+            <line x1="36" y1="72" x2="46" y2="72" />
+            <line x1="36" y1="76" x2="46" y2="76" />
+          </g>
+          <!-- handle highlight strip -->
+          <rect x="36" y="48" width="1.5" height="38" rx=".75" fill="rgba(255,255,255,.15)" />
+          <!-- hang hole at bottom -->
+          <circle cx="41" cy="84" r="2.2" fill="#000" />
+          <circle cx="41" cy="84" r="1.4" fill="#1a1a1c" />
+        </g>
+
+        <!-- Hot ember on blade front edge (visible on hover) -->
+        <circle class="spatula-ember" cx="65" cy="6" r="7" fill="url(#emberTip)" />
+      </svg>
+    </div>
+
+    <!-- ========== INTRO OVERLAY ========== -->
+    <section id="intro" class="intro" aria-label="Bienvenida">
+      <div class="intro-bg">
+        <div class="intro-smoke"></div>
+        <div class="intro-vignette"></div>
+      </div>
+
+      <h1 class="intro-title">
+        <span class="intro-eyebrow">Desde 1962 · Luis Guillón · Bs. As.</span>
+
+        <!-- Filete banner with brand name inside -->
+        <svg class="intro-banner" viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asadores de Norberto">
+          <defs>
+            <linearGradient id="ribbon" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c41818" />
+              <stop offset="50%" stop-color="#8b0e0e" />
+              <stop offset="100%" stop-color="#5a0606" />
+            </linearGradient>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fde58a" />
+              <stop offset="50%" stop-color="#d4a036" />
+              <stop offset="100%" stop-color="#8b6914" />
+            </linearGradient>
+            <filter id="goldEmboss" x="-5%" y="-5%" width="110%" height="110%">
+              <feGaussianBlur stdDeviation="1" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- ribbon main shape -->
+          <path d="M 60 50 L 840 50 L 870 120 L 840 190 L 60 190 L 30 120 Z"
+                fill="url(#ribbon)" stroke="url(#goldGrad)" stroke-width="4" />
+          <!-- inner dashed gold outline -->
+          <path d="M 70 60 L 825 60 L 852 120 L 825 180 L 70 180 L 45 120 Z"
+                fill="none" stroke="#fde58a" stroke-width="1.2" stroke-dasharray="3 5" opacity=".55" />
+          <!-- left tail fold -->
+          <path d="M 30 120 L 5 95 L 20 110 L 8 145 Z" fill="#5a0606" stroke="url(#goldGrad)" stroke-width="2.5" />
+          <!-- right tail fold -->
+          <path d="M 870 120 L 895 95 L 880 110 L 892 145 Z" fill="#5a0606" stroke="url(#goldGrad)" stroke-width="2.5" />
+
+          <!-- filete swirls left -->
+          <path d="M 90 95 Q 70 110 90 125 Q 70 140 95 150" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" />
+          <circle cx="92" cy="95" r="3" fill="url(#goldGrad)" />
+          <circle cx="95" cy="150" r="3" fill="url(#goldGrad)" />
+          <!-- filete swirls right -->
+          <path d="M 810 95 Q 830 110 810 125 Q 830 140 805 150" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" />
+          <circle cx="808" cy="95" r="3" fill="url(#goldGrad)" />
+          <circle cx="805" cy="150" r="3" fill="url(#goldGrad)" />
+
+          <!-- TEXT: brand name -->
+          <text x="450" y="115" text-anchor="middle"
+                font-family="'Alfa Slab One', serif" font-size="58"
+                fill="url(#goldGrad)" stroke="#3a0303" stroke-width="1.2"
+                letter-spacing="3"
+                filter="url(#goldEmboss)">ASADORES</text>
+          <text x="450" y="170" text-anchor="middle"
+                font-family="'Pacifico', cursive" font-size="42"
+                fill="#fde58a" stroke="#3a0303" stroke-width="0.5"
+                transform="rotate(-2 450 165)">de Norberto</text>
+
+          <!-- small decorative leaves over text -->
+          <g fill="url(#goldGrad)" opacity=".85">
+            <ellipse cx="240" cy="78" rx="6" ry="2.5" transform="rotate(-25 240 78)" />
+            <ellipse cx="660" cy="78" rx="6" ry="2.5" transform="rotate(25 660 78)" />
+          </g>
+        </svg>
+
+        <span class="intro-sub">Parrillas hechas a mano · Tres generaciones · Chapa SAE 1010</span>
+      </h1>
+
+      <!-- Burning grill with steak -->
+      <div class="intro-stage">
+        <div class="intro-grill" id="intro-grill">
+          <!-- Ember layer -->
+          <div class="grill-embers">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span>
+          </div>
+          <!-- Grill bars (SVG so we can animate) -->
+          <svg class="grill-bars" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g stroke="#2a1a10" stroke-width="6" stroke-linecap="round">
+              <line x1="20" y1="40" x2="380" y2="40" />
+              <line x1="20" y1="55" x2="380" y2="55" />
+              <line x1="20" y1="70" x2="380" y2="70" />
+              <line x1="20" y1="85" x2="380" y2="85" />
+              <line x1="20" y1="100" x2="380" y2="100" />
+            </g>
+            <g stroke="#1a0f0a" stroke-width="3">
+              <line x1="20" y1="35" x2="20" y2="115" />
+              <line x1="380" y1="35" x2="380" y2="115" />
+            </g>
+          </svg>
+
+          <!-- The steak (clickable target) -->
+          <button type="button" class="intro-steak" id="intro-steak" aria-label="Empezar — tocá la carne">
+            <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="steakGrad" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#9c2818" />
+                  <stop offset="50%" stop-color="#6e1408" />
+                  <stop offset="100%" stop-color="#3a0a04" />
+                </radialGradient>
+                <radialGradient id="fatGrad">
+                  <stop offset="0%" stop-color="#fff3d8" />
+                  <stop offset="100%" stop-color="#dcc28a" />
+                </radialGradient>
+              </defs>
+              <path d="M30,70 Q20,30 70,18 Q140,5 180,30 Q215,55 200,90 Q185,125 130,128 Q60,130 35,105 Q15,90 30,70 Z" fill="url(#steakGrad)" stroke="#2a0808" stroke-width="2" />
+              <!-- fat marbling -->
+              <path d="M70,40 Q90,35 110,45 Q130,52 150,48" fill="none" stroke="url(#fatGrad)" stroke-width="3" stroke-linecap="round" opacity="0.85" />
+              <path d="M55,75 Q80,72 105,82 Q130,90 160,85" fill="none" stroke="url(#fatGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
+              <!-- grill marks -->
+              <path d="M50,55 L180,55" stroke="#180404" stroke-width="2.5" opacity="0.5" />
+              <path d="M45,75 L190,75" stroke="#180404" stroke-width="2.5" opacity="0.5" />
+              <path d="M50,95 L185,95" stroke="#180404" stroke-width="2.5" opacity="0.5" />
+            </svg>
+            <!-- Sizzle particles -->
+            <div class="steak-sizzle">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </button>
+        </div>
+
+        <p class="intro-hint">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path d="M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74m-9 0h13a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Tocá la carne para entrar
+        </p>
+      </div>
+
+      <!-- Skip intro -->
+      <button type="button" class="intro-skip" id="intro-skip" aria-label="Saltar intro">Saltar intro →</button>
+    </section>
+
+    <!-- ========== MOBILE FAB (WhatsApp) ========== -->
+    <a href="https://wa.me/5491100000000?text=Hola%20Norberto!%20Vengo%20de%20la%20web" target="_blank" rel="noopener"
+       class="wa-fab" id="wa-fab" aria-label="Consultar por WhatsApp" hidden>
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+        <path d="M20.52 3.48A11.94 11.94 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.64a11.93 11.93 0 0 0 5.77 1.47h.01c6.58 0 11.92-5.34 11.92-11.92a11.86 11.86 0 0 0-3.45-8.43zM12.04 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.98 1-3.62-.24-.37a9.86 9.86 0 0 1-1.52-5.28c0-5.46 4.45-9.9 9.91-9.9 2.65 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.89 7c0 5.46-4.44 9.88-9.91 9.88zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.97-.95 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01s-.52.07-.8.37c-.27.3-1.05 1.02-1.05 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.11 3.22 5.11 4.52.71.31 1.27.49 1.7.63.71.23 1.37.2 1.88.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"
+              fill="currentColor"/>
+      </svg>
+      <span class="wa-fab-label">WhatsApp</span>
+    </a>
+
+    <!-- ========== AUDIO TOGGLE ========== -->
+    <button type="button" id="audio-toggle" class="audio-toggle" aria-label="Música tango" aria-pressed="false">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M9 18V5l12-2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <span class="audio-toggle-label">Tango</span>
+    </button>
+
+    <!-- ========== NAVIGATION ========== -->
+    <header class="topbar" id="topbar" hidden>
+      <a href="#hero" class="topbar-logo">
+        <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="#8b0e0e" stroke="#d4a036" stroke-width="2" />
+          <text x="20" y="26" text-anchor="middle" font-family="Alfa Slab One" font-size="18" fill="#fde58a">N</text>
+        </svg>
+        <span>Asadores de Norberto</span>
+      </a>
+      <nav class="topbar-nav">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#medida">A medida</a>
+        <a href="#historia">Historia</a>
+        <a href="#fabrica">La fábrica</a>
+        <a href="#envios">Envíos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button type="button" id="cart-button" class="topbar-cart" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 1.9-1.4L21 8H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="9" cy="20" r="1.5" fill="currentColor" />
+          <circle cx="18" cy="20" r="1.5" fill="currentColor" />
+        </svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </header>
+
+    <!-- ========== MAIN SHOWROOM ========== -->
+    <main id="showroom" hidden>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-fog" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+          <p class="hero-eyebrow">Bienvenido a la vidriera</p>
+          <h2 class="hero-title">
+            <span class="filete-cursive">La parrilla</span>
+            <span class="filete-slab">no es un objeto.</span>
+            <span class="filete-cursive">Es un domingo.</span>
+          </h2>
+          <p class="hero-lead">
+            Tres generaciones de la familia Norberto haciendo parrillas, asadores criollos y discos en Luis Guillón, conurbano sur. Cada pieza, soldada a mano. Cada chapa, SAE 1010 de 1,6 mm. Cada hogar argentino, un poco más asado.
+          </p>
+          <div class="hero-ctas">
+            <a href="#catalogo" class="btn btn-bordo">Ver el catálogo</a>
+            <a href="#historia" class="btn btn-ghost">La historia de Norberto</a>
+          </div>
+
+          <ul class="hero-pills">
+            <li><strong>62 años</strong> de oficio</li>
+            <li><strong>21 modelos</strong> en stock</li>
+            <li><strong>Chapa SAE 1010</strong> · 1,6 mm</li>
+            <li><strong>Pintado epoxi</strong> · alta temperatura</li>
+            <li><strong>Envíos</strong> con Andreani · OCA</li>
+          </ul>
+        </div>
+
+        <!-- Showcase: rotating row of grills -->
+        <div class="hero-vitrina" aria-hidden="true">
+          <div class="vitrina-track" id="vitrina-track"></div>
+        </div>
+      </section>
+
+      <!-- CATALOG -->
+      <section class="section section-cream" id="catalogo">
+        <header class="section-head">
+          <span class="section-eyebrow">Catálogo</span>
+          <h2 class="section-title"><span class="filete-cursive">Veintiuna</span> formas de prender fuego</h2>
+          <p class="section-lead">
+            De la parrilla estructural de 1 metro al disco de arado de toda la vida, pasando por rockets, fogoneros y planchas chursaqueras. Filtrá por familia y pedí por WhatsApp o sumá al carrito.
+          </p>
+        </header>
+
+        <div class="catalog-filters" id="catalog-filters" role="tablist" aria-label="Familias de productos">
+          <!-- filled by JS -->
+        </div>
+
+        <div class="catalog-grid" id="catalog-grid">
+          <!-- filled by JS -->
+        </div>
+
+        <div class="catalog-note">
+          <strong>Material:</strong> Todo se fabrica en chapa SAE 1010 de 1,6 mm, soldada por arco y terminada con pintura epoxi de alta temperatura. Las medidas son nominales — cada pieza puede variar 1–2 cm según el lote.
+        </div>
+      </section>
+
+      <!-- A MEDIDA -->
+      <section class="section section-bordo" id="medida">
+        <div class="medida-grid">
+          <div>
+            <span class="section-eyebrow light">Hecho a medida</span>
+            <h2 class="section-title light"><span class="filete-cursive light">¿No entra</span> en tu patio?</h2>
+            <p class="section-lead light">
+              No hay drama. Si tenés un espacio raro, una idea heredada del abuelo o querés una parrilla de 1,80 m con dos parrillas y leñero, escribinos. Norberto y los hijos cotizan en 24 horas y la fabrican en 3 a 5 semanas según complejidad. Todo se hace acá en el taller de Luis Guillón, ningún subcontrato.
+            </p>
+            <ul class="medida-checks">
+              <li><span>✓</span> Diseñamos sobre tu plano o foto del lugar</li>
+              <li><span>✓</span> Cotizamos por WhatsApp o mail en 24 horas</li>
+              <li><span>✓</span> Fabricación 3–5 semanas según pieza</li>
+              <li><span>✓</span> Entregamos con flete propio en AMBA, o Andreani al interior</li>
+            </ul>
+
+            <form class="medida-form" id="medida-form" novalidate>
+              <label>Nombre <input type="text" name="nombre" required autocomplete="name" /></label>
+              <label>WhatsApp <input type="tel" name="tel" required autocomplete="tel" placeholder="+54 9 11 ..." /></label>
+              <label>Contame qué necesitás
+                <textarea name="mensaje" rows="4" required placeholder="Medidas, lugar, fotos por WhatsApp después..."></textarea>
+              </label>
+              <button type="submit" class="btn btn-oro">Enviar consulta por WhatsApp</button>
+            </form>
+          </div>
+
+          <aside class="medida-aside">
+            <figure>
+              <picture>
+                <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_2934-sm.webp" />
+                <img src="/images/atmosphere/_MG_2934.webp" alt="Soldadura artesanal en la fábrica" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption>Soldadura por arco — taller de Luis Guillón</figcaption>
+            </figure>
+          </aside>
+        </div>
+      </section>
+
+      <!-- HISTORIA -->
+      <section class="section section-cream" id="historia">
+        <header class="section-head">
+          <span class="section-eyebrow">Tres generaciones</span>
+          <h2 class="section-title"><span class="filete-cursive">La historia</span> de don Norberto</h2>
+        </header>
+
+        <div class="historia-timeline" id="historia-timeline">
+          <article class="historia-card">
+            <div class="historia-year">1958</div>
+            <h3>Llega el abuelo</h3>
+            <p>Vincenzo Norberto baja del barco con 23 años, un baúl de herramientas de su Calabria natal y nada más. Se instala primero en Lanús, después se muda para el sur con su mujer. Empieza a soldar rejas y a estirar chapa en un galpón prestado, con la promesa de devolverlo "cuando arranque el negocio".</p>
+          </article>
+
+          <article class="historia-card">
+            <div class="historia-year">1962</div>
+            <h3>Nace el oficio</h3>
+            <p>Para el cumpleaños de un vecino, Vincenzo arma su primera parrilla de chapa con un asador criollo doblado a mano. El vecino le paga con un cordero. Al mes siguiente tiene seis pedidos. Así nace, sin enterarse todavía, <em>Asadores de Norberto</em>.</p>
+          </article>
+
+          <article class="historia-card">
+            <div class="historia-year">1984</div>
+            <h3>Aparece Norberto hijo</h3>
+            <p>El hijo del medio, Norberto, vuelve del servicio militar y entra al taller como soldador. No quiere otra cosa. Trae la chapa SAE 1010 como estándar — "la que no se chupa con el fuego" — y empieza a dibujar los discos de arado para el campo.</p>
+          </article>
+
+          <article class="historia-card">
+            <div class="historia-year">1997</div>
+            <h3>El taller actual</h3>
+            <p>Compran el terreno de <strong>Dora Catalina Fleitas 740</strong>, en Luis Guillón. Mil metros cuadrados, dos prensas, una guillotina y un horno de pintura epoxi. La marca pasa a llamarse oficialmente <strong>Asadores de Norberto</strong>, en honor al papá.</p>
+          </article>
+
+          <article class="historia-card">
+            <div class="historia-year">2014</div>
+            <h3>Vincenzo se va</h3>
+            <p>El abuelo fallece a los 79. Dicen los hijos que dejó el martillo apoyado sobre la última parrilla que armó, una estructural de 70 cm. Esa parrilla nunca se vendió: está colgada arriba del portón del taller.</p>
+          </article>
+
+          <article class="historia-card">
+            <div class="historia-year">Hoy</div>
+            <h3>La tercera generación</h3>
+            <p>Norberto sigue al frente. Sus dos hijos — el mayor a las soldaduras estructurales, la menor al diseño de los rockets y los carros — están aprendiendo a hacer las cosas como hay que hacerlas: sin apuro, con buena chapa, y sin nunca cobrar lo que no se ganó.</p>
+          </article>
+        </div>
+
+        <blockquote class="historia-quote">
+          <p>"La parrilla es la única máquina argentina que une a todo el mundo sin que nadie le pida permiso. Vos hacela bien y dejá que ella haga el resto."</p>
+          <cite>— Norberto, 2024</cite>
+        </blockquote>
+
+        <!-- VINTAGE FAMILY ALBUM -->
+        <div class="album">
+          <div class="album-head">
+            <span class="section-eyebrow">Álbum de familia</span>
+            <h3 class="album-title"><span class="filete-cursive">Algunas fotos</span> del taller</h3>
+            <p class="album-sub">Fotos viejas digitalizadas — algunas son del archivo familiar, otras las tomó Vincenzo con la Kodak Brownie que se trajo de Italia.</p>
+          </div>
+
+          <div class="album-rail">
+            <figure class="polaroid polaroid-tilt-l">
+              <div class="polaroid-photo">
+                <picture>
+                  <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_2964-sm.webp" />
+                  <img src="/images/atmosphere/_MG_2964.webp" alt="Taller de soldadura" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <figcaption><strong>1968</strong> — Vincenzo soldando el primer carro asador.</figcaption>
+            </figure>
+
+            <figure class="polaroid polaroid-tilt-r">
+              <div class="polaroid-photo">
+                <picture>
+                  <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_2934-sm.webp" />
+                  <img src="/images/atmosphere/_MG_2934.webp" alt="Estructura de hierro" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <figcaption><strong>1971</strong> — Antonella, mamá, llevaba las cuentas en un cuaderno.</figcaption>
+            </figure>
+
+            <figure class="polaroid polaroid-tilt-l">
+              <div class="polaroid-photo">
+                <picture>
+                  <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_3037-sm.webp" />
+                  <img src="/images/atmosphere/_MG_3037.webp" alt="Norberto joven" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <figcaption><strong>1985</strong> — Norberto pibe, ya con el delantal de cuero.</figcaption>
+            </figure>
+
+            <figure class="polaroid polaroid-tilt-r">
+              <div class="polaroid-photo">
+                <picture>
+                  <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_2998-sm.webp" />
+                  <img src="/images/atmosphere/_MG_2998.webp" alt="Encendido del horno" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <figcaption><strong>1998</strong> — Estrenando el horno de pintura epoxi en Luis Guillón.</figcaption>
+            </figure>
+
+            <figure class="polaroid polaroid-tilt-l">
+              <div class="polaroid-photo">
+                <picture>
+                  <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_3019-sm.webp" />
+                  <img src="/images/atmosphere/_MG_3019.webp" alt="Familia en el taller" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <figcaption><strong>2009</strong> — Tres generaciones, mismo banco de trabajo.</figcaption>
+            </figure>
+
+            <figure class="polaroid polaroid-tilt-r">
+              <div class="polaroid-photo">
+                <picture>
+                  <source media="(max-width: 720px)" srcset="/images/atmosphere/_MG_2950-sm.webp" />
+                  <img src="/images/atmosphere/_MG_2950.webp" alt="Parrilla terminada" loading="lazy" decoding="async" />
+                </picture>
+              </div>
+              <figcaption><strong>Hoy</strong> — La estructural 1m saliendo del horno epoxi.</figcaption>
+            </figure>
+          </div>
+
+          <p class="album-foot">Hacé scroll lateral o tirá con el dedo si estás desde el celular ↔</p>
+        </div>
+      </section>
+
+      <!-- VISITÁ LA FÁBRICA -->
+      <section class="section section-noche" id="fabrica">
+        <header class="section-head">
+          <span class="section-eyebrow light">Visitanos</span>
+          <h2 class="section-title light"><span class="filete-cursive light">Acá</span> se hacen</h2>
+          <p class="section-lead light">
+            Si estás cerca, venite. Te mostramos cómo se dobla una chapa, te invitamos un mate, y si tenés suerte, Norberto te explica por qué la 1,6 mm no se reemplaza con nada.
+          </p>
+        </header>
+
+        <div class="fabrica-grid">
+          <div class="fabrica-card">
+            <div class="fabrica-map" id="fabrica-map">
+              <iframe
+                title="Ubicación de la fábrica en Luis Guillón"
+                src="https://www.google.com/maps?q=-34.7993254,-58.4602667&z=16&output=embed"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="fabrica-streetview">
+              <iframe
+                title="Vista de calle de la fábrica"
+                src="https://www.google.com/maps/embed?pb=!4v1700000000000!6m8!1m7!1sfKCTjhxiIGL6Lh_e8BQSbQ!2m2!1d-34.7993254!2d-58.4602667!3f257.85!4f1.06!5f0.7820865974627469"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <span class="fabrica-pin">Acá ↓</span>
+            </div>
+          </div>
+
+          <aside class="fabrica-info">
+            <h3>Dirección</h3>
+            <p>
+              Dora Catalina Fleitas <strong>740</strong><br />
+              Luis Guillón, Esteban Echeverría<br />
+              Buenos Aires (CP B1838BHC)<br />
+              Argentina
+            </p>
+            <h3>Horarios</h3>
+            <p>
+              Lunes a Viernes — 8:00 a 17:00<br />
+              Sábados — 9:00 a 13:00<br />
+              Domingos — cerrado, estamos asando
+            </p>
+            <h3>Cómo llegar</h3>
+            <p>Desde Constitución, tren Roca a Luis Guillón (35 min). En auto, AU Riccheri, salida Monte Grande, después dos cuadras.</p>
+            <a class="btn btn-oro" href="https://www.google.com/maps/dir/?api=1&destination=Dora+Catalina+Fleitas+740+Luis+Guill%C3%B3n" target="_blank" rel="noopener">Cómo llegar →</a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ENVÍOS -->
+      <section class="section section-cream" id="envios">
+        <header class="section-head">
+          <span class="section-eyebrow">Logística</span>
+          <h2 class="section-title"><span class="filete-cursive">Tu parrilla</span> en tu patio</h2>
+          <p class="section-lead">
+            Trabajamos con <strong>Andreani</strong> y <strong>OCA</strong>, las dos mejores logísticas de Argentina. Embalamos cada pieza en bastidor de madera con esquineros, y la entregamos en tu puerta. De Ushuaia a La Quiaca — donde haya un asador, llegamos.
+          </p>
+        </header>
+
+        <!-- ANIMATED ARGENTINA MAP -->
+        <div class="argentina-map-wrap" id="argentina-map-wrap">
+          <div class="map-stars" aria-hidden="true"></div>
+
+          <svg class="argentina-map" id="argentina-map" viewBox="0 0 400 820" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="mapFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2d1810" />
+                <stop offset="50%" stop-color="#1a0f0a" />
+                <stop offset="100%" stop-color="#0c0604" />
+              </linearGradient>
+              <linearGradient id="mapStroke" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#d4a036" />
+                <stop offset="100%" stop-color="#8b6914" />
+              </linearGradient>
+              <filter id="emberGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+              <radialGradient id="dotGrad">
+                <stop offset="0%" stop-color="#fff3d8" />
+                <stop offset="40%" stop-color="#ff9243" />
+                <stop offset="100%" stop-color="#c41818" />
+              </radialGradient>
+            </defs>
+
+            <!-- Argentina silhouette (approximation, recognizable) -->
+            <path id="ar-shape" fill="url(#mapFill)" stroke="url(#mapStroke)" stroke-width="2" stroke-linejoin="round"
+              d="M 175 25
+                 L 195 22 L 215 28 L 235 30 L 260 48 L 285 60 L 310 75
+                 L 335 95 L 360 115 L 380 145 L 380 175 L 370 200
+                 L 360 235 L 355 270 L 360 305 L 365 340 L 360 380
+                 L 350 415 L 340 445 L 320 470 L 295 490 L 275 510
+                 L 260 540 L 250 575 L 235 610 L 220 645 L 200 680
+                 L 180 715 L 165 750 L 150 775 L 130 790
+                 L 115 785 L 110 765 L 115 740 L 120 710
+                 L 115 680 L 110 650 L 105 615 L 100 580
+                 L 95 540 L 95 500 L 75 470 L 60 435
+                 L 55 400 L 60 365 L 70 330 L 80 295
+                 L 90 260 L 100 225 L 110 190 L 120 155
+                 L 130 125 L 135 95 L 145 70 L 160 45 Z" />
+
+            <!-- City dots + label slots (set in JS) -->
+            <g id="ar-cities"></g>
+
+            <!-- Routes drawn from Luis Guillón -->
+            <g id="ar-routes" fill="none" stroke="#ff9243" stroke-width="1.5" stroke-linecap="round" filter="url(#emberGlow)"></g>
+
+            <!-- Compass rose -->
+            <g class="map-compass" transform="translate(50, 60)">
+              <circle r="20" fill="none" stroke="#d4a036" stroke-width="1" opacity=".5" />
+              <path d="M 0 -16 L 4 0 L 0 16 L -4 0 Z" fill="#d4a036" opacity=".7" />
+              <text y="-22" text-anchor="middle" font-family="Inconsolata" font-size="9" fill="#d4a036" letter-spacing="2">N</text>
+            </g>
+
+            <!-- Title plaque -->
+            <g transform="translate(310, 720)">
+              <rect x="-55" y="-12" width="110" height="50" rx="4" fill="#fff5d7" stroke="#8b0e0e" stroke-width="1.5" />
+              <text y="2" text-anchor="middle" font-family="Inconsolata" font-size="7" fill="#8b0e0e" letter-spacing="2">REPÚBLICA</text>
+              <text y="14" text-anchor="middle" font-family="Alfa Slab One" font-size="11" fill="#8b0e0e">ARGENTINA</text>
+              <text y="28" text-anchor="middle" font-family="Inconsolata" font-size="5.5" fill="#8b6914" letter-spacing="1.5">RUTA DE NORBERTO · 2026</text>
+            </g>
+          </svg>
+
+          <!-- Legend / counter -->
+          <div class="map-counter">
+            <div class="map-counter-block">
+              <span class="map-counter-num" data-target="2400">0</span>
+              <span class="map-counter-label">km al sur</span>
+            </div>
+            <div class="map-counter-block">
+              <span class="map-counter-num" data-target="3400">0</span>
+              <span class="map-counter-label">km al norte</span>
+            </div>
+            <div class="map-counter-block">
+              <span class="map-counter-num" data-target="24">0</span>
+              <span class="map-counter-label">provincias cubiertas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="envios-grid">
+          <article class="envios-card">
+            <div class="envios-icon">🚚</div>
+            <h3>AMBA</h3>
+            <p class="envios-eta">24 a 72 hs</p>
+            <p>Capital Federal y Gran Buenos Aires. Para piezas grandes (estructurales 1m, carros, duomos) coordinamos flete propio sin recargo dentro de los 30 km del taller.</p>
+          </article>
+
+          <article class="envios-card">
+            <div class="envios-icon">🛣️</div>
+            <h3>Interior cercano</h3>
+            <p class="envios-eta">3 a 5 días</p>
+            <p>Provincia de Buenos Aires (interior), Santa Fe, Córdoba, Entre Ríos, Mendoza. Andreani sucursal a sucursal o domicilio.</p>
+          </article>
+
+          <article class="envios-card">
+            <div class="envios-icon">🌎</div>
+            <h3>Patagonia / Norte</h3>
+            <p class="envios-eta">5 a 8 días</p>
+            <p>Neuquén, Río Negro, Chubut, Salta, Jujuy. Andreani cargas o transportes especializados según volumen.</p>
+          </article>
+
+          <article class="envios-card">
+            <div class="envios-icon">📦</div>
+            <h3>Retiro en fábrica</h3>
+            <p class="envios-eta">Gratis</p>
+            <p>Si pasás por Luis Guillón, te lo dejamos cargado al auto. Mate y bizcocho de yapa.</p>
+          </article>
+        </div>
+
+        <div class="envios-note">
+          <strong>Importante:</strong> los tiempos son hábiles desde el despacho. Productos en stock se despachan al siguiente día hábil del pago confirmado. Productos <em>a medida</em>: 3 a 5 semanas de fabricación + envío.
+        </div>
+
+        <!-- Export bonus block -->
+        <div class="envios-export">
+          <div class="envios-export-globe" aria-hidden="true">
+            <div class="globe">
+              <div class="globe-sphere"></div>
+              <div class="globe-orbit"><span></span></div>
+              <div class="globe-orbit globe-orbit-2"><span></span></div>
+            </div>
+          </div>
+          <div class="envios-export-text">
+            <span class="section-eyebrow">Exportación</span>
+            <h3 class="envios-export-title">También cruzamos la frontera</h3>
+            <p>Exportamos a <strong>Chile, Uruguay, Paraguay, Brasil y Bolivia</strong> con flete terrestre. Para destinos lejanos coordinamos envío marítimo desde el puerto de Buenos Aires — el grueso del costo es el flete, no la parrilla.</p>
+            <p class="envios-export-flags" aria-hidden="true">🇨🇱 🇺🇾 🇵🇾 🇧🇷 🇧🇴 🇪🇸 🇺🇸</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section section-cream" id="faq">
+        <header class="section-head">
+          <span class="section-eyebrow">Preguntas frecuentes</span>
+          <h2 class="section-title"><span class="filete-cursive">Lo que</span> nos preguntan siempre</h2>
+        </header>
+
+        <div class="faq-list" id="faq-list">
+          <details class="faq-item">
+            <summary>¿Por qué chapa SAE 1010 y no otra?</summary>
+            <p>La SAE 1010 es una chapa de bajo carbono, dúctil, que aguanta los choques térmicos del fuego sin deformarse. Para parrillas es el estándar. La 1,6 mm de espesor es lo que diferencia una parrilla de por vida de una "promoción de oferta" que se pandea a los seis meses.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Qué pintura usan? ¿Se descascara?</summary>
+            <p>Usamos pintura epoxi de alta temperatura, horneada a 180°C en cabina cerrada. Resiste hasta 600°C en la parte exterior. La parte interior es chapa cruda — al cabo de los primeros usos se "cura" sola y queda con esa pátina negra que protege contra la oxidación.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Cómo limpio la parrilla después de usarla?</summary>
+            <p>Mientras está caliente, cepillo de alambre y nada más. Una vez por temporada, agua caliente con detergente y secarla bien. <strong>Nada de agua fría sobre chapa caliente</strong> — se choquea el material y aparecen fisuras.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Tienen garantía?</summary>
+            <p>Sí: 5 años contra defectos de fabricación (soldadura, deformaciones, mal funcionamiento de bisagras o ruedas). El desgaste normal por uso no se incluye, obvio.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Cómo se paga?</summary>
+            <p>Coordinamos por WhatsApp. Aceptamos transferencia bancaria (con 5% de descuento), efectivo en fábrica (con 8% de descuento), y link de Mercado Pago hasta 12 cuotas sin interés según promoción del banco (consultá vigentes).</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Hacen exportación?</summary>
+            <p>Sí, exportamos a Chile, Uruguay y Paraguay con flete terrestre. Para otros destinos coordinamos por mail — el grueso es el flete internacional, no el producto.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer-inner">
+          <div>
+            <h3 class="footer-brand">Asadores <em>de</em> Norberto</h3>
+            <p>Parrillas hechas a mano desde 1962.<br />Dora Catalina Fleitas 740, Luis Guillón<br />Buenos Aires · Argentina</p>
+          </div>
+          <div>
+            <h4>Contacto</h4>
+            <p>
+              WhatsApp: <a href="#" id="footer-wa">+54 9 11 0000-0000</a><br />
+              Mail: <a href="mailto:hola@asadoresnorberto.com.ar">hola@asadoresnorberto.com.ar</a><br />
+              Instagram: <a href="#">@asadoresdenorberto</a>
+            </p>
+          </div>
+          <div>
+            <h4>Sitio</h4>
+            <p>
+              <a href="#catalogo">Catálogo</a><br />
+              <a href="#medida">Hacé el tuyo a medida</a><br />
+              <a href="#fabrica">Visitanos en la fábrica</a><br />
+              <a href="#envios">Envíos y pagos</a>
+            </p>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <span>© 1962–2026 Asadores de Norberto · Fabricado en Argentina 🇦🇷</span>
+          <span class="footer-mono">SAE 1010 · 1,6 mm · Epoxi 600°C</span>
+        </div>
+      </footer>
+    </main>
+
+    <!-- ========== CART DRAWER ========== -->
+    <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+      <header class="cart-head">
+        <h3>Tu pedido</h3>
+        <button type="button" class="cart-close" id="cart-close" aria-label="Cerrar carrito">×</button>
+      </header>
+      <div class="cart-body" id="cart-body">
+        <p class="cart-empty">Tu carrito está más vacío que parrilla en cuarentena.</p>
+      </div>
+      <footer class="cart-foot">
+        <div class="cart-total">
+          <span>Total</span>
+          <span id="cart-total">$ 0</span>
+        </div>
+        <p class="cart-disclaimer">Tu pedido sale por WhatsApp directo a Norberto. Coordina pago (transferencia, efectivo o link de MP) y envío con vos.</p>
+        <button type="button" class="btn btn-bordo btn-full" id="cart-checkout">Pedir por WhatsApp</button>
+      </footer>
+    </aside>
+    <div class="cart-backdrop" id="cart-backdrop"></div>
+
+    <!-- ========== PRODUCT MODAL ========== -->
+    <div class="product-modal" id="product-modal" aria-hidden="true">
+      <div class="product-modal-inner">
+        <button type="button" class="product-modal-close" id="product-modal-close" aria-label="Cerrar">×</button>
+        <div class="product-modal-body" id="product-modal-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
