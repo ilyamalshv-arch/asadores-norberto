@@ -13,6 +13,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Build & deploy
+    # Skip if secrets aren't configured yet (e.g. while using CF Pages "Connect to Git" auto-deploy)
+    if: ${{ vars.USE_GH_ACTIONS_DEPLOY == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
